@@ -1,0 +1,152 @@
+!pip install plotly
+!pip install plotly jupyterlab
+
+import plotly
+
+import pandas as pd 
+import seaborn as sns
+from pandas.plotting import scatter_matrix
+from matplotlib import pyplot as plotly
+from matplotlib import font_manager as font_manager
+from datetime import datetime,timedelta
+import numpy as np
+import plotly.express as px
+import plotly.figure_factory as ff
+import plotly.graph_objects as go
+
+*******************************************************************************
+# simple line plot
+# is x info and y info
+
+df = pd.DataFrame({"Years-I Brandyn have put into learning & creating decisions that help others" : [1,2,3,4], "Hours":[6500,10000,12000,14000]})
+df.head()
+
+fig = px.line(df,x="Years-I Brandyn have put into learning & creating decisions that help others",y="Hours", title="Thank you for viewing my LinkedIn profile!")
+fig.show()
+
+*******************************************************************************
+# multiline plot with markers
+
+Time = ['Nine a.m.', 'Eleven a.m.', 'Five p.m.', 'Ten p.m.',]
+
+BlueLine = [9, 16, 20, 25]
+RedLine = [12, 19, 8, 39]
+GreenLine = [6,10,16,15]
+PinkLine = [3,6,2,7]
+
+
+
+fig = go.Figure()
+
+fig.add_trace(go.Scatter(x=Time,y=BlueLine,name="BlueLine",line = dict(color="blue",width=4)))
+
+fig.add_trace(go.Scatter(x=Time,y=RedLine,name="RedLine",line = dict(color="red",width=4)))
+
+fig.add_trace(go.Scatter(x=Time,y=GreenLine,name="GreenLine",line = dict(color="green",width=4,dash='dash')))
+
+fig.add_trace(go.Scatter(x=Time,y=PinkLine,name="PinkLine",line = dict(color="pink",width=4,dash='dot')))
+
+fig.update_layout(title="False CTA Crime created for practicing Multiline Graphs",xaxis_title="Time",yaxis_title="Number of robberies")
+
+fig.show()
+*******************************************************************************
+# create a barplot 
+#color_discrete_map changes bar colors, use with px.bar though I think
+
+mybooks=['Snowcrash', 'Think Like A Freak', 'The Prince of Milk']
+
+fig = go.Figure([go.Bar(x=mybooks, y=[440, 288, 352])])
+
+fig.update_layout(
+    title="Books Currently Reading",
+    xaxis_title="Book Titles",
+    yaxis_title="Number of Pages",
+    legend_title="Legend Title",
+    font=dict(
+        family="Courier New, monospace",
+        size=18,
+        color="RebeccaPurple"
+    )
+)
+
+fig.show()
+*******************************************************************************
+# Custom Area Chart in Seaborn
+# Use area charts only if you want to show how values develop over time!!!!!!
+
+import matplotlib.pyplot as plt
+
+sns.set_theme()
+ 
+#define DataFrame
+df = pd.DataFrame({'period': [2015, 2016, 2017, 2018, 2019, 2020, 2021],
+                   'team_A': [20, 12, 15, 14, 19, 20, 22],
+                   'team_B': [5, 7, 7, 9, 11, 9, 12],
+                   'team_C': [11, 8, 10, 8, 6, 5, 9]})
+
+#define colors to use in chart
+color_map = ['purple', 'steelblue', 'pink']
+    
+#create area chart
+plt.stackplot(df.period, df.team_A, df.team_B, df.team_C,
+              labels=['United States', 'Canada', 'Iraq'],
+              colors=color_map)
+
+#add legend
+plt.legend(loc='upper left')
+
+#add axis labels
+plt.xlabel('Time Period')
+plt.ylabel('Production of Oil by Percentage')
+plt.title('Area Chart example, not real Data!')
+
+#display area chart
+plt.show()
+*******************************************************************************
+# stacked area chart
+#fig.add_trace(go.Scatter ( x=stud,y=[50,5,2], hoverinfo='x+y',mode='lines',line=dict(width=0.6,color='rgb(100,51,190)'),stackgroup='one'))
+#   ,stackgroup='one' <--------- turns into stacked area chart              
+
+stud=['A.M. grain count','P.M. grain count']
+
+fig = go.Figure()
+
+fig.add_trace(go.Scatter ( x=stud,y=[40,10], hoverinfo='x+y',line=dict(width=0.6,color='rgb(172,89,200)')))
+
+fig.add_trace(go.Scatter ( x=stud,y=[50,5], hoverinfo='x+y',line=dict(width=0.6,color='rgb(100,51,190)')))
+
+fig.update_layout(title="Comparing what cat eats more food",xaxis_title="BeamerBoy=Pink Kevin=Purple",yaxis_title="Food count by the grain")
+*******************************************************************************
+# pie chart
+
+import plotly.graph_objects as go
+
+labels = ['Blueberry Stock','Strawberry Stock','Spinach Stock','Plumes Stock']
+values = [3000, 2500, 1053, 500]
+
+# pull is given as a fraction of the pie radius the 0.2 I think
+fig = go.Figure(data=[go.Pie(labels=labels, values=values, pull=[0, 0, 0.2, 0])])
+fig.show()
+*******************************************************************************
+# scatter plot
+# look up custom scatter plots
+
+iris = sns.load_dataset('iris')
+iris.head()
+
+fig =px.scatter(iris,x="petal_length",y="petal_width",color="species",size='sepal_width',hover_data=['sepal_length'],
+                title = "Scatter plot of Iris Plant Dataset")
+
+fig.update_layout(
+    title="Scatter plot of Iris Plant Dataset",
+    xaxis_title="petal_width",
+    yaxis_title="petal_length",
+    font=dict(
+        family="Droid Sans",
+        size=18,
+        color="Orange"
+    )
+)
+
+
+fig.show()
