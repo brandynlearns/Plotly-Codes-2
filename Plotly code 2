@@ -9,7 +9,7 @@ from pandas.plotting import scatter_matrix
 from matplotlib import pyplot as plotly
 from matplotlib import font_manager as font_manager
 from datetime import datetime,timedelta
-import numpy as np
+import numpy as np 
 import plotly.express as px
 import plotly.figure_factory as ff
 import plotly.graph_objects as go
@@ -150,3 +150,16 @@ fig.update_layout(
 
 
 fig.show()
+
+
+***********COLORS*************
+'#1f77b4',  # muted blue
+    '#ff7f0e',  # safety orange
+    '#2ca02c',  # cooked asparagus green
+    '#d62728',  # brick red
+    '#9467bd',  # muted purple
+    '#8c564b',  # chestnut brown
+    '#e377c2',  # raspberry yogurt pink
+    '#7f7f7f',  # middle gray
+    '#bcbd22',  # curry yellow-green
+    '#17becf'   # blue-teal
